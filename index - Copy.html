@@ -14,31 +14,27 @@
 	crossorigin=""></script>
 
 	<!-- Set Up Wise Move -->
-	<link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" href="/wisemove/css/main.css" />
 	
 </head>
 
 <body>
-	<div class="header">
-    <img src="images/logo-small.jpg" alt="WiseMover Logo">
-	</div>
+	<header>
+		<img src="images/logo-small.jpg" alt="WiseMover Logo">
+	</header>
 
-	<div class="content">
-		
-		<div class="left">Controls GO Here</div>
-		<div class="right">
-			<div id = "map" style="height:100%"></div>
+	<div class="container">
+		<div class="nav">
+		<!-- Map Controls -->
+			<p>Controls Go here</p>
 		</div>
+		
+		<div id="map" class="map" style="height:400px">
+		<!-- Map  -->
+		</div>
+		
 	</div>
 
-	<div class="footer">
-		<img src="https://www.zoopla.co.uk/static/images/mashery/powered-by-zoopla-150x73.png" width="150" height="73" title="Property information powered by Zoopla" alt="Property information powered by Zoopla" border="0">
-	</div>
-	
-
-	
-	
-</body>
 	<script>
 
 		var mymap = L.map('map').setView([51.505, -0.09], 13);
@@ -51,6 +47,11 @@
 		id: 'mapbox.streets'
 		}).addTo(mymap);
 
-	</script>
+		</script>
+	<footer>
+		<p>Footer</p>
+		<img src="https://www.zoopla.co.uk/static/images/mashery/powered-by-zoopla-150x73.png" width="150" height="73" title="Property information powered by Zoopla" alt="Property information powered by Zoopla" border="0">
+	</footer>
 
+</body>
 </html>

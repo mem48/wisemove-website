@@ -1,68 +1,37 @@
-/* Layout */
-body {width: 100%; height: 100%; margin: 0; padding: 0; background-color: white;}
-header {position: absolute; top: 0; width: 100%; height: 100px; background-color: #ccccff; border-bottom: 1px solid #888;}
-main {position: fixed; margin-top: 101px; height: calc(100% - 132px); width: 100%;}
-nav {float: left; width: 250px; height: 100%; overflow-y: auto; border-right: 1px solid #888;}
-#map {margin-left: 251px; height: 100%; width: calc(100% - 261px);}
-footer {position: absolute; bottom: 0; width: 100%; height: 30px; background-color: #e6e6ff; border-top: 1px solid #888;}
-
-/* Typography */
-body, input, textarea, h1, h2, h3, h4, h5, h6, p, ul, li {font-family: 'Lato', sans-serif;}
-
-/* Header */
-header #logo {float: right; height: 100px; border-left: 1px solid #888; background-color: white;}
-header #logo img {height: 80px; padding: 10px 20px;}
-header ul {float: right; margin-right: 60px; margin-top: 20px;}
-header ul li {display: inline;}
-header ul li a {padding: 20px 0 2px; margin-left: 10px; text-decoration: none; border-bottom: 2px solid gray; color: gray;}
-header h1 {margin: 12px 0 8px; padding: 0; font-size: 1.9em;}
-header h1 a {text-decoration: none;}
-header p {font-size: 0.93em; font-style: italic; margin: 0; padding: 0 0 3px;}
-header h1, header p {padding-left: 15px;}
-header h1, header h1 a, header p {color: #444;}
-
-/* Footer */
-footer p {margin: 0; padding: 7px 10px 0 15px; font-size: 0.84em; text-align: right;}
-footer p a {color: gray; text-decoration: none;}
-
-/* Nav */
-nav > p {margin: 15px;}
-
-/* Accordion */
-nav #accordion {padding: 10px 15px 15px;}
-nav #accordion h3 {margin: 0 0 15px; padding: 5px 10px 5px 5px; background-color: #eee; border-radius: 4px; cursor: default;}
-nav #accordion div.filters {
-    padding: 0 10px;
-    background-color: white;
-    max-height: 0;
-    overflow: hidden;	/* i.e. hidden by default */
-    transition: max-height 0.2s ease-out;
+body, html{
+    padding:0;
+    margin:0;
+    position:relative;
+    height:100%;
+	
 }
-nav #accordion div.filters p:first-child {margin-top: 0;}
-nav #accordion h3:before {
-    content: '\02795'; /* Unicode character for 'plus' sign (+) */
-    font-size: 13px;
-    color: #777;
-    float: right;
-    margin-top: 2px;
-    margin-left: 8px;
+.header{
+    width:100%;
+	height:100px;
+    background:#DAF7A6;
 }
-nav #accordion h3.active:before {
-    content: "\2796"; /* Unicode character for 'minus' sign (-) */
+.footer{
+    width:100%;
+	height:74px;
+    background:#DAF7A6;
 }
-nav .export {position: relative; top: -15px;}
-
-nav h3 a {font-size: 0.73em; margin-left: 10px;}
-
-/* Geocoder */
-#geocoder {left: 310px; top: 12px;}
-
-/* About page */
-#about {display: none;}
-
-/* Popup styling */
-#map .leaflet-popup-content-wrapper {max-height: 300px; overflow-y: auto;}
-#map .leaflet-popup.schemes {min-width: 500px;}
-#map .leaflet-popup.schemes div.leaflet-popup-content {width: auto !important;}
-#map .leaflet-popup.schemes table tr td:first-child {text-align: right;}
-
+.content{
+    width:100%;
+    height:calc(100% - 175px);
+}
+.left{
+    width:180px;
+    background:#AED6F1;
+    height:100%;
+	border: 1px solid red;
+}
+.right{
+    width:calc(100% - 190px);
+	position:absolute;
+	top: 100px;
+	right:0px;
+    margin-left: 185px;
+    background:#aaa;
+    height:calc(100% - 175px);
+	border: 1px solid green;
+}
