@@ -2,7 +2,7 @@
  
  #Api Call to get PCT data
  # Define the settings, using the credentials above
-  $connection_string = "host = wisemovedb.cf6eckl151qq.us-east-2.rds.amazonaws.com port = 5432 dbname = wisemovedb user = wisemoveadmin password = 85D$N^$lnQUoNGO3q3f4";
+  $connection_string = "host = localhost dbname = wisemove user = wisemove";
  
  # Connect to the database
  # We use the PDO database abstraction library, and provide a DSN connection string in this format: 'pgsql:host=localhost;dbname=example'
