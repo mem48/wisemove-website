@@ -31,6 +31,7 @@
 	-webkit-border-radius: 0 0 5px 0;
 	-moz-border-radius: 0 0 5px 0;
 	border-radius: 0 0 5px 0;
+	overflow: auto; ">
 }
 #slideout_inner textarea {
 	width: 190px;
@@ -38,7 +39,8 @@
 	margin-bottom: 6px;
 }
 #slideout:hover {
-	left: 250px;
+	left: 310px;
+		
 }
 #slideout:hover #slideout_inner {
 	left: 0;
