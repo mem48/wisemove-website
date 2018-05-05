@@ -18,9 +18,9 @@
 #slideout_inner {
 	position: fixed;
 	top: 60px;
-	left: -250px;
+	left: -310px;
 	background: #6DAD53;
-	width: 240px;
+	width: 300px;
 	padding: 5px;
 	height: calc(100% - 150px);
 	-webkit-transition-duration: 0.3s;
