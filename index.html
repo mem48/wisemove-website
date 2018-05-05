@@ -9,32 +9,65 @@
 	<script src="js/lib/leaflet-1.3.1/leaflet.js"></script>
 	<script src="js/lib/leaflet-ajax/leaflet.ajax.min.js"></script>
 	
-	<!-- Set Up Wise Move -->
+	<!-- Set Up WiseMover -->
 	<link rel="stylesheet" href="css/main.css" />
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	
+	<!-- Google Ads -->
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script>
+		 (adsbygoogle = window.adsbygoogle || []).push({
+			  google_ad_client: "ca-pub-3212800493482675",
+			  enable_page_level_ads: true
+		 });
+	</script>
 	
 </head>
 
 <body>
 	<div class="header">
-    <img src="images/logo-small.jpg" alt="WiseMover Logo">
+		<h1><img src="images/logo.jpg" alt="WiseMover Logo" height="48">WiseMover</h1>
 	</div>
 
 	<div class="content">
+		<div class="left">
+			<p>Settings</p>
+			<p>Crime</p>
+			<div class="slidecontainer">
+				<input type="range" min="1" max="1000" value="50" class="slider" id="crimeslider">
+				<p>Value: <span id="crimevalue"></span></p>
+			</div>
 		
-		<div class="left">Controls GO Here</div>
-		<div class="right">
+		</div>
+		<div class="middle">
 			<div id = "map" style="height:100%"></div>
+		</div>
+		<div class="right">
+			<p>Add</p>
 		</div>
 	</div>
 
 	<div class="footer">
-		<img src="https://www.zoopla.co.uk/static/images/mashery/powered-by-zoopla-150x73.png" width="150" height="73" title="Property information powered by Zoopla" alt="Property information powered by Zoopla" border="0">
+		<p>WiseMover Coptyright 2018</p>
 	</div>
 	
 
 	
 	
 </body>
+	<script>
+		var slider = document.getElementById("crimeslider");
+		var output = document.getElementById("crimevalue");
+		output.innerHTML = slider.value; // Display the default slider value
+
+		// Update the current slider value (each time you drag the slider handle)
+		slider.oninput = function() {
+			output.innerHTML = this.value;
+		}
+
+	</script>
+
 	<script>
 
 		var mymap = L.map('map').setView([53.805, -1.5], 10);
