@@ -27,25 +27,21 @@ body, html{
 .content{
     width:calc(100% - 1px)%;
     height:calc(100% - 100px);
-	border: 1px solid black;
 }
 .left{
 	float: left;
 	width:1px;
     height:100%;
-	border: 1px solid green;
 }
 .middle{
     float: left;
-	width:calc(100% - 190px);
+	width:calc(100% - 162px);
     height:100%;
-	border: 1px solid red;
 }
 .right{
 	float: right;
-	width:180px;
+	width:161px;
     height:100%;
-	border: 1px solid blue;
 }
 
 /* Header */
