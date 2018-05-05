@@ -41,15 +41,28 @@
 		<div id="slideout">
 			<img src="images/controls.jpg" alt="Controls" />
 			<div id="slideout_inner">
-				<p>Crime <a href="#box-crime">?</a></p>
-				<div class="slidecontainer">
-					<input type="range" min="1" max="1000" value="50" class="slider" id="crimeslider">
-					<p>Value: <span id="crimevalue"></span></p>
+				
+				<button class="accordion">House Prices</button>
+				<div class="panel">
+				  <p>Lorem ipsum...</p>
+				</div>
+
+				<button class="accordion">Travel Times</button>
+				<div class="panel">
+				  <p>Lorem ipsum...</p>
+				</div>
+
+				<button class="accordion">Crime <a href="#box-crime">?</a></button>
+				<div class="panel">
+					<div class="slidecontainer">
+						<input type="range" min="1" max="1000" value="50" class="slider" id="crimeslider">
+						<p>Value: <span id="crimevalue"></span></p>
+					</div>
 				</div>
 				
 				
 				
-				
+				<script src="js/accordion.js"></script>
 			</div>
 		</div>
 		

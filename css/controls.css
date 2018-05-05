@@ -20,8 +20,8 @@
 	top: 60px;
 	left: -250px;
 	background: #6DAD53;
-	width: 200px;
-	padding: 25px;
+	width: 240px;
+	padding: 5px;
 	height: calc(100% - 150px);
 	-webkit-transition-duration: 0.3s;
 	-moz-transition-duration: 0.3s;
