@@ -31,13 +31,13 @@ body, html{
 }
 .left{
 	float: left;
-	width:180px;
+	width:1px;
     height:100%;
 	border: 1px solid green;
 }
 .middle{
     float: left;
-	width:calc(100% - 380px);
+	width:calc(100% - 190px);
     height:100%;
 	border: 1px solid red;
 }
@@ -47,6 +47,18 @@ body, html{
     height:100%;
 	border: 1px solid blue;
 }
+
+/* Header */
+header #logo {float: left; height: 50px; background-color: white;}
+header #logo img {height: 50px; padding: 0px 0px;}
+header ul {float: right; margin-right: 60px; margin-top: 0px;}
+header ul li {display: inline;}
+header ul li a {padding: 5px 0 2px; margin-left: 10px; text-decoration: none; border-bottom: 2px solid gray; color: gray;}
+header h1 {margin: 0px 0 5px; padding: 5px; font-size: 2.8em;}
+header h1 a {text-decoration: none;}
+header p {font-style: italic; margin: 0; padding: 0;}
+header h1, header p {padding-left: 15px;}
+header h1, header h1 a, header p {color: #444;}
 
 
 /* Text */
