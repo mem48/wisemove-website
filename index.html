@@ -3,9 +3,9 @@
 <head>
 	<title>WiseMover</title>
 
-
 	<!-- Set Up Leaflet -->
 	<link rel="stylesheet" href="js/lib/leaflet-1.3.1/leaflet.css"/>
+	<link rel="stylesheet" href="css/help.css"/>
 	<script src="js/lib/leaflet-1.3.1/leaflet.js"></script>
 	<script src="js/lib/leaflet-ajax/leaflet.ajax.min.js"></script>
 	
@@ -13,7 +13,16 @@
 	<link rel="stylesheet" href="css/main.css" />
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
-		
+	
+	<!-- Google Ads -->
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script>
+	  (adsbygoogle = window.adsbygoogle || []).push({
+		google_ad_client: "ca-pub-3212800493482675",
+		enable_page_level_ads: true
+	  });
+	</script>
+	
 </head>
 
 <body>
@@ -24,15 +33,35 @@
 	<div class="content">
 		<div class="left">
 			<p>Settings</p>
-			<p>Crime</p>
+			<p>Crime <button id="myBtn" class="helpbutton">?</button></p>
 			<div class="slidecontainer">
 				<input type="range" min="1" max="1000" value="50" class="slider" id="crimeslider">
 				<p>Value: <span id="crimevalue"></span></p>
 			</div>
-		
+			
+			<a href="#openModal1">Box 1</a>
+
+			<div id="openModal1" class="modalDialog">
+				<div>
+					<a href="#close" title="Close" class="close">X</a>
+					<h2>Modal Box 1</h2>
+					<p>This is a sample modal box that can be created using the powers of CSS3.    </p>
+					<p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users.</p>
+				</div>
+			</div>
+			<a href="#openModal2">Box 2</a>
+
+			<div id="openModal2" class="modalDialog">
+				<div>
+					<a href="#close" title="Close" class="close">X</a>
+					<h2>Modal Box 2</h2>
+					<p><strong>Box 2</strong></p>
+					<p>yadda yadda</p>
+				</div>
+			</div>
 		</div>
 		<div class="middle">
-			<div id = "map" style="height:100%"></div>
+			<div id = "map" style="height:100%; z-index:1;"></div>
 		</div>
 		<div class="right">
 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -71,7 +100,7 @@
 	<script>
 
 		var mymap = L.map('map').setView([53.805, -1.5], 10);
-		
+		mymap.zoomControl.setPosition('topright');
 
 		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 		maxZoom: 18,
@@ -80,6 +109,7 @@
 			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
 		id: 'mapbox.streets'
 		}).addTo(mymap);
+		
 		
 		function getColor(d) {
 			return d > 1000 ? '#800026' :

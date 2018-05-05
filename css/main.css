@@ -61,7 +61,7 @@ h1{
 
 /* Sliders */
 .slidecontainer {
-    width: 100%; /* Width of the outside container */
+    width: 90%; /* Width of the outside container */
 }
 
 /* The slider itself */
@@ -98,4 +98,3 @@ h1{
     background: #4CAF50; /* Green background */
     cursor: pointer; /* Cursor on hover */
 }
-
