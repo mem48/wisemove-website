@@ -5,7 +5,7 @@
  <body>
  <?php
 	ini_set ("display_errors", "1");
-	echo "<p>Running Tests v4.1</p>";
+	echo "<p>Running Tests v4.2</p>";
 	include_once ('connect.php');
 	// Check Connection
 	echo $pgcon;
