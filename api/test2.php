@@ -4,8 +4,8 @@
  </head>
  <body>
  <?php
-	echo "Running Tests";
-	require_once ('./defaults.php');
+	echo "Running Tests v2";
+	include_once ('./defaults.php');
 	$defaults = defaults ();
 	echo $defaults;
 	echo "Getting Settings";
