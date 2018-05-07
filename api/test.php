@@ -67,7 +67,7 @@ $geomfield = 'geometry';
 $geotable = 'zones';
 
 # Build SQL SELECT statement and return the geometry as a GeoJSON element in EPSG: 4326
-$sql = "SELECT objectid, oa11cd, st_asgeojson(geometry) AS geojson FROM zones ";
+$sql = "SELECT objectid, total, st_asgeojson(geometry) AS geojson FROM zones ";
 if (strlen(trim($parameters)) > 0) {
     $sql .= " WHERE " . pg_escape_string($parameters);
 }
