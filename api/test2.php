@@ -4,8 +4,10 @@
  </head>
  <body>
  <?php
-	echo "Running Tests v3";
-	include_once ('./connect.php');
+	echo "<p>Running Tests v4</p>";
+	include_once ('connect.php');
+	// Check Connection
+	echo $pgcon;
 	// Performing SQL query
 	$query = 'SELECT * FROM zones LIMIT 5';
 	$result = pg_query($query) or die('Query failed: ' . pg_last_error());
@@ -25,7 +27,7 @@
 	pg_free_result($result);
 
 	// Closing connection
-	pg_close($dbconn);
+	pg_close($pgcon);
  ?>
  </body>
 </html>
