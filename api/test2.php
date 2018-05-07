@@ -4,13 +4,13 @@
  </head>
  <body>
  <?php
-	echo "<p>Running Tests v4</p>";
+	echo "<p>Running Tests v4.1</p>";
 	include_once ('connect.php');
 	// Check Connection
 	echo $pgcon;
 	// Performing SQL query
 	$query = 'SELECT * FROM zones LIMIT 5';
-	$result = pg_query($query) or die('Query failed: ' . pg_last_error());
+	$result = pg_query($pgcon, $query) or die('Query failed: ' . pg_last_error());
 
 	// Printing results in HTML
 	echo "<table>\n";
