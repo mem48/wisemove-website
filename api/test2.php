@@ -3,7 +3,11 @@
   <title>PHP Test</title>
  </head>
  <body>
- <p>Hello World</p>
- <p><?php phpinfo(); ?></p>
+ <?php
+	echo "Running Tests";
+	require_once ('./defaults.php');
+	$this->settings = $this->defaults ();
+	echo $this;
+ ?>
  </body>
 </html>

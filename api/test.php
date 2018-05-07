@@ -7,7 +7,7 @@
 	# Load and run the API class
 	require_once ('./defaults.php');
 
-	echo "Running Tests"
+	echo "Running Tests";
 
 	# Class properties
 	private $databaseConnection;
@@ -23,7 +23,7 @@
 	# Load subclass
 	require_once ('./wisemoveModel.php');
 
-	echo $this
+	echo $this;
 		
 	# Connect to the database, providing a DSN connection string in this format: 'pgsql:host=localhost;dbname=example'
 	try {
