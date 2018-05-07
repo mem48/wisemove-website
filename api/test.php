@@ -1,4 +1,9 @@
-<?php
+<html>
+ <head>
+  <title>PHP Test</title>
+ </head>
+ <body>
+ <?php
 # Load and run the API class
 require_once ('./defaults.php');
 
@@ -46,3 +51,7 @@ if ($error) {
 	return $this->error ($error);
 }
 ?>
+ </body>
+</html>
+
+
