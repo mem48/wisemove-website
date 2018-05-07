@@ -5,13 +5,13 @@
  <body>
  <?php
 	ini_set ("display_errors", "1");
-	echo "<p>Running Tests v4.2</p>";
+	echo "<p>Running Tests v4.3</p>";
 	include_once ('connect.php');
 	// Check Connection
-	echo $pgcon;
+	
 	// Performing SQL query
 	$query = 'SELECT * FROM zones LIMIT 5';
-	$result = pg_query($pgcon, $query) or die('Query failed: ' . pg_last_error());
+	$result = pg_query($databaseConnection, $query) or die('Query failed: ' . pg_last_error());
 
 	// Printing results in HTML
 	echo "<table>\n";
@@ -28,7 +28,7 @@
 	pg_free_result($result);
 
 	// Closing connection
-	pg_close($pgcon);
+	pg_close($databaseConnection);
  ?>
  </body>
 </html>
