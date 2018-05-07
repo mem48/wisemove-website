@@ -1,22 +1,14 @@
 <?php
+# Load and run the API class
+require_once ('./defaults.php');
+
+
 # Class properties
 private $databaseConnection;
 
 # Supported formats
 private $formats = array ('json', 'geojson', 'csv');
 
-
-# Defaults
-private function defaults ()
-{
-	return array (
-	'hostname' => 'localhost',
-		'username' => 'wisemove',
-		'password' => NULL,		// Postgres peer connection type is being used
-		'database' => 'wisemove',
-	);
-}
-	
 	
 # Constructor
 public function __construct ()
