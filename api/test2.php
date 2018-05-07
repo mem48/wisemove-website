@@ -6,6 +6,9 @@
  <?php
 	echo "Running Tests";
 	require_once ('./defaults.php');
+	$defaults = defaults ();
+	echo $defaults;
+	echo "Getting Settings";
 	$this->settings = $this->defaults ();
 	echo $this;
  ?>
