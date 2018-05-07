@@ -1,57 +1,114 @@
-<html>
- <head>
-  <title>PHP Test</title>
- </head>
- <body>
-	<?php
-	# Load and run the API class
-	require_once ('./defaults.php');
+<?php
+# In Testing Mode
+ini_set ("display_errors", "1");
 
-	echo "Running Tests";
+# Connect to DB
+include_once ('connect.php');
 
-	# Class properties
-	private $databaseConnection;
+###############
+## Functions
+###############
 
-	# Supported formats
-	private $formats = array ('json', 'geojson', 'csv');
-
-		
-
-	# Load settings
-	$this->settings = $this->defaults ();
-
-	# Load subclass
-	require_once ('./wisemoveModel.php');
-
-	echo $this;
-		
-	# Connect to the database, providing a DSN connection string in this format: 'pgsql:host=localhost;dbname=example'
-	try {
-		$this->databaseConnection = new PDO ("pgsql:host={$this->settings['hostname']};dbname={$this->settings['database']}", $this->settings['username'], $this->settings['password']);
-		$this->databaseConnection->setAttribute (PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$this->databaseConnection->setAttribute (PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-	} catch (PDOException $e) {
-		// var_dump ($e->getMessage (), $query);
-		return $this->error ('Unable to connect to the database.');
+# Helper function to get the BBOX
+function getBbox ()
+{
+	# Get the data from the query string
+	$bboxString = (isSet ($_GET['bbox']) ? $_GET['bbox'] : NULL);
+	
+	# Check BBOX is Provided
+	if (!$bboxString) {
+		echo 'No bbox was supplied.';
 	}
-
-	# Ensure a valid format has been supplied
-	$format = $this->getFormat ($error);
-	if ($error) {
-		return $this->error ($error);
+	
+	# Ensure four values
+	if (substr_count ($bboxString, ',') != 3) {
+		echo 'An invalid bbox was supplied.';
 	}
-
-		
-	# Load the model, passing in API parameters
-	$this->wisemoveModel = new wisemoveModel ($bbox, $zoom, $_GET);
-
-	# Ensure a valid action has been supplied
-	$method = $this->getMethod ($error);
-	if ($error) {
-		return $this->error ($error);
+	
+	# Assemble the parameters
+	$bbox = array ();
+	list ($bbox['w'], $bbox['s'], $bbox['e'], $bbox['n']) = explode (',', $bboxString);
+	
+	# Ensure valid values
+	foreach ($bbox as $key => $value) {
+		if (!is_numeric ($value)) {
+			echo 'An invalid bbox was supplied.';
+		}
 	}
-	?>
- </body>
-</html>
+	
+	# Return the collection
+	return $bbox;
+}
+
+function escapeJsonString($value) { # list from www.json.org: (\b backspace, \f formfeed)
+  $escapers = array("\\", "/", "\"", "\n", "\r", "\t", "\x08", "\x0c");
+  $replacements = array("\\\\", "\\/", "\\\"", "\\n", "\\r", "\\t", "\\f", "\\b");
+  $result = str_replace($escapers, $replacements, $value);
+  return $result;
+}
+	
+##############
+## Code
+##############
+
+#Get the BBOX
+$bbox = getBbox ();
+#Query Database
+# $query = 'SELECT * FROM zones WHERE geometry && ST_MakeEnvelope(:w, :s, :e, :n, 4326) LIMIT 5';
+#$query = "SELECT * FROM zones WHERE geometry && ST_MakeEnvelope(" . $bbox['w'] . "," . $bbox['s'] ."," . $bbox['e'] . "," . $bbox['n'] . ", 4326) LIMIT 50";
+#echo $query;
+
+
+$srid = '4326';
+$parameters = "geometry && ST_MakeEnvelope(" . $bbox['w'] . "," . $bbox['s'] ."," . $bbox['e'] . "," . $bbox['n'] . ", 4326)";
+$fields = '*';
+$limit = '5';
+$geomfield = 'geometry';
+$geotable = 'zones';
+
+# Build SQL SELECT statement and return the geometry as a GeoJSON element in EPSG: 4326
+$sql = "SELECT objectid, oa11cd, st_asgeojson(geometry) AS geojson FROM zones ";
+if (strlen(trim($parameters)) > 0) {
+    $sql .= " WHERE " . pg_escape_string($parameters);
+}
+if (strlen(trim($limit)) > 0) {
+    $sql .= " LIMIT " . pg_escape_string($limit);
+}
+#echo $sql;
+
+$rs = pg_query($databaseConnection, $sql) or die('Query failed: ' . pg_last_error());
+
+# Build GeoJSON
+$output    = '';
+$rowOutput = '';
+while ($row = pg_fetch_assoc($rs)) {
+    $rowOutput = (strlen($rowOutput) > 0 ? ',' : '') . '{"type": "Feature", "geometry": ' . $row['geojson'] . ', "properties": {';
+    $props = '';
+    $id    = '';
+    foreach ($row as $key => $val) {
+        if ($key != "geojson") {
+            $props .= (strlen($props) > 0 ? ',' : '') . '"' . $key . '":"' . escapeJsonString($val) . '"';
+        }
+        if ($key == "id") {
+            $id .= ',"id":"' . escapeJsonString($val) . '"';
+        }
+    }
+    
+    $rowOutput .= $props . '}';
+    $rowOutput .= $id;
+    $rowOutput .= '}';
+    $output .= $rowOutput;
+}
+$output = '{ "type": "FeatureCollection", "features": [ ' . $output . ' ]}';
+echo $output;
+
+# Free resultset
+pg_free_result($rs);
+
+# Closing connection
+pg_close($databaseConnection);
+	
+?>
+
 
 
