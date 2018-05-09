@@ -62,7 +62,7 @@ $bbox = getBbox ();
 $srid = '4326';
 $parameters = "geometry && ST_MakeEnvelope(" . $bbox['w'] . "," . $bbox['s'] ."," . $bbox['e'] . "," . $bbox['n'] . ", 4326)";
 $fields = '*';
-$limit = '100';
+$limit = '1000';
 $geomfield = 'geometry';
 $geotable = 'zones';
 
