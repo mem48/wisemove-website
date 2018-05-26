@@ -30,9 +30,15 @@ function style(feature) {
 
 
 var zones = L.geoJson(null);
+var pricevalues = $('form').serialize();
+//var pricevalues = $('priceform');
+//var crimevalues = $('crimeform').serialize();
+//var pricevalues = document.getElementById("maxprice").value;
+console.log(pricevalues);
 
 map.on('dragend', function onDragEnd(){
 zones.clearLayers();
+//console.log(pricevalues);
 
 $.ajax({
     		type: "GET",

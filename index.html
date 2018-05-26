@@ -48,7 +48,50 @@
 				
 				<button class="accordion">House Prices</button>
 				<div class="panel">
-				  <p>Lorem ipsum...</p>
+					<form id = "priceform">
+					<p>Maximum Price
+					<select name="maxprice" id="maxprice">
+						<option value=300000000>Unlimited</option>
+						<option value=10000000>£10 Million</option>
+						<option value=5000000>£5 Million</option>
+						<option value=1000000>£1 Million</option>
+						<option value=900000>£900,000</option>
+						<option value=800000>£800,000</option>
+						<option value=700000>£700,000</option>
+						<option value=600000>£600,000</option>
+						<option value=500000>£500,000</option>
+						<option value=450000>£450,000</option>
+						<option value=400000>£400,000</option>
+						<option value=350000>£350,000</option>
+						<option value=300000>£300,000</option>
+						<option value=250000>£250,000</option>
+						<option value=200000>£200,000</option>
+						<option value=150000>£150,000</option>
+						<option value=100000>£100,000</option>
+						<option value=50000>£50,000</option>
+					 </select></p>
+					<p>Minimum Price
+					<select name="minprice" id="minprice">
+						<option value=300000000>Unlimited</option>
+						<option value=10000000>£10 Million</option>
+						<option value=5000000>£5 Million</option>
+						<option value=1000000>£1 Million</option>
+						<option value=900000>£900,000</option>
+						<option value=800000>£800,000</option>
+						<option value=700000>£700,000</option>
+						<option value=600000>£600,000</option>
+						<option value=500000>£500,000</option>
+						<option value=450000>£450,000</option>
+						<option value=400000>£400,000</option>
+						<option value=350000>£350,000</option>
+						<option value=300000>£300,000</option>
+						<option value=250000>£250,000</option>
+						<option value=200000>£200,000</option>
+						<option value=150000>£150,000</option>
+						<option value=100000>£100,000</option>
+						<option value=50000>£50,000</option>
+					 </select></p>
+					 </form>
 				</div>
 
 				<button class="accordion">Travel Times</button>
@@ -58,20 +101,34 @@
 
 				<button class="accordion">Crime <a href="#box-crime">?</a></button>
 				<div class="panel">
-					<div class="slidecontainer">
-						<input type="range" min="1" max="1000" value="50" class="slider" id="crimeslider">
-						<p>Value: <span id="crimevalue"></span></p>
-					</div>
+					<form id = "crmeform">
+					<p>Crime 
+					<select name="crime">
+						<option value=5000>High</option>
+						<option value=34>Well Above Average</option>
+						<option value=26>Above Average</option>
+						<option value=20>Average</option>
+						<option value=16>Below Average</option>
+						<option value=12>Well Below Average</option>
+						<option value=9>Low</option>
+					 </select></p>
+					 </form>
 				</div>
-				
-				<button class="accordion">Other</button>
+								
+				<button class="accordion">Broadband</button>
 				<div class="panel">
-				  <p>Lorem ipsum...</p>
-				</div>
-				
-				<button class="accordion">Other</button>
-				<div class="panel">
-				  <p>Lorem ipsum...</p>
+				  <p>Average Download Speeds 
+					<select name="broabandaverage">
+						<option value=0>Any Speed</option>
+						<option value=10>10 Mbps Slow</option>
+						<option value=20>20 Mbps Below Average</option>
+						<option value=30>30 Mbps Average</option>
+						<option value=50>50 Mbps Above Average</option>
+						<option value=100>100 Mbps Fast</option>
+					 </select></p>
+				<p>Require Access to</p>
+				  <input type="checkbox" name="broabandcheck" value="sf">Superfast broaband (30  Mbps)<br>
+				  <input type="checkbox" name="broabandcheck" value="uf">Ultrafast broaband (300 Mbps)<br>
 				</div>
 				
 				<button class="accordion">Other</button>
@@ -88,6 +145,7 @@
 			<div id = "map" style="height:100%; z-index:1;"></div>
 		</div>
 		<div class="right">
+			<!--
 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 			<!-- v160x600 -->
 			<!-- Disable for Now
@@ -134,17 +192,7 @@
 
 	<script src="js/map.js"></script>
 	
-	<script>
-		var slider = document.getElementById("crimeslider");
-		var output = document.getElementById("crimevalue");
-		output.innerHTML = slider.value; // Display the default slider value
-
-		// Update the current slider value (each time you drag the slider handle)
-		slider.oninput = function() {
-			output.innerHTML = this.value;
-		}
-
-	</script>
+	
 	
 </body>
 
