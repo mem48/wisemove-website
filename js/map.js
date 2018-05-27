@@ -8,20 +8,21 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
 		id: 'mapbox.streets'
 }).addTo(map);
 
-function getColor(d) {
-	return d > 1000 ? '#800026' :
-		   d > 500  ? '#BD0026' :
-		   d > 200  ? '#E31A1C' :
-		   d > 100  ? '#FC4E2A' :
-		   d > 50   ? '#FD8D3C' :
-		   d > 20   ? '#FEB24C' :
-		   d > 10   ? '#FED976' :
-					  '#FFEDA0';
-}
+//function getColor(d) {
+//	return d > 1000 ? '#800026' :
+//		   d > 500  ? '#BD0026' :
+//		   d > 200  ? '#E31A1C' :
+//		   d > 100  ? '#FC4E2A' :
+//		   d > 50   ? '#FD8D3C' :
+//		   d > 20   ? '#FEB24C' :
+//		   d > 10   ? '#FED976' :
+//					  '#FFEDA0';
+//}
 		
 function style(feature) {
 	return {
-		fillColor: getColor(feature.properties.total),
+		//fillColor: getColor(feature.properties.total),
+		fillColor: '#808080',
 		weight: 0,
 		opacity: 0,
 		fillOpacity: 0.7
@@ -30,19 +31,20 @@ function style(feature) {
 
 
 var zones = L.geoJson(null);
-var pricevalues = $('form').serialize();
+//var pricevalues = $('form').serialize();
 //var pricevalues = $('priceform');
 //var crimevalues = $('crimeform').serialize();
 //var pricevalues = document.getElementById("maxprice").value;
-console.log(pricevalues);
+//console.log(pricevalues);
 
 map.on('dragend', function onDragEnd(){
 zones.clearLayers();
-//console.log(pricevalues);
+var pricevalues = $('form').serialize();
+console.log(pricevalues);
 
 $.ajax({
     		type: "GET",
-     		url: "https://www.wisemover.co.uk/api/test.php?bbox=" + map.getBounds().toBBoxString(),
+     		url: "https://www.wisemover.co.uk/api/free.php?bbox=" + map.getBounds().toBBoxString() + '&' + pricevalues,
     		dataType: 'json',
     		success: function (response) {
         		zones = L.geoJson(response, {style: style}, {

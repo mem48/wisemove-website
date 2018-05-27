@@ -57,7 +57,7 @@ function getParameters ($parameter)
 	}
 	
 	# Return the collection
-	return $bbox;
+	return $paramString;
 }
 
 function escapeJsonString($value) { # list from www.json.org: (\b backspace, \f formfeed)
@@ -78,9 +78,9 @@ $bbox = getBbox ();
 #$query = "SELECT * FROM zones WHERE geometry && ST_MakeEnvelope(" . $bbox['w'] . "," . $bbox['s'] ."," . $bbox['e'] . "," . $bbox['n'] . ", 4326) LIMIT 50";
 #echo $query;
 
-$minprice = getParameters('minprice')
-$maxprice = getParameters('maxprice')
-$crime = getParameters('crime')
+$minprice = getParameters('minprice');
+$maxprice = getParameters('maxprice');
+$crime = getParameters('crime');
 $srid = '4326';
 $parameters = "geometry && ST_MakeEnvelope(" . $bbox['w'] . "," . $bbox['s'] ."," . $bbox['e'] . "," . $bbox['n'] . ", 4326)";
 $fields = '*';
@@ -89,25 +89,30 @@ $geomfield = 'geometry';
 $geotable = 'oa';
 
 # Build SQL SELECT statement and return the geometry as a GeoJSON element in EPSG: 4326
-#$sql = "SELECT wOA, st_asgeojson(geometry) AS geojson FROM oa ";
+$sql = "SELECT st_asgeojson(geometry) AS geojson FROM oa ";
 if (strlen(trim($parameters)) > 0) {
     $sql .= " WHERE " . pg_escape_string($parameters);
 }
-
-if (strlen(trim($minprice)) > 0) {
-    $sql .= " AND (price_low > " . $maxprice . "OR price_high < " . $minprice . " )"  ;
-}
+$sql2 = " AND NOT (";
 
 if (strlen(trim($crime)) > 0) {
-    $sql .= " AND (crime > " . $crime ;
+    $sql2 .= "crime < " . $crime ;
 }
 
+if (strlen(trim($minprice)) > 0) {
+    $sql2 .= " AND price_low < " . $maxprice . " AND price_high > " . $minprice ;
+}
+
+$sql2 .= " )" ;
+$sql .= $sql2 ;
 
 if (strlen(trim($limit)) > 0) {
     $sql .= " LIMIT " . $limit;
 }
-echo $sql;
 
+
+#$sql = "SELECT st_asgeojson(geometry) AS geojson FROM oa WHERE geometry && ST_MakeEnvelope(-0.1338,51.451,-0.0523,51.543, 4326) LIMIT 10";
+#echo $sql;
 $rs = pg_query($databaseConnection, $sql) or die('Query failed: ' . pg_last_error());
 
 # Build GeoJSON
@@ -133,6 +138,8 @@ while ($row = pg_fetch_assoc($rs)) {
 }
 $output = '{ "type": "FeatureCollection", "features": [ ' . $output . ' ]}';
 echo $output;
+#echo $rs;
+#echo pg_fetch_array($rs);
 
 # Free resultset
 pg_free_result($rs);
